@@ -11,5 +11,7 @@ export function fetchWeather(data) {
       `${REACT_APP_WEATHER_API_BASE_URL}?appid=${REACT_APP_WEATHER_API_KEY}&q=${data}`
     )
     .then(res => res)
-    .catch(err => console.log("err", err));
+    .catch(err => {
+      throw err;
+    });
 }
