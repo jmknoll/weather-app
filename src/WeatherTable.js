@@ -22,9 +22,9 @@ const WeatherTable = props => {
 
           <Table.Body>
             <Table.Row>
-              <Table.Cell>{formatTemp(weather.main.temp)}</Table.Cell>
-              <Table.Cell>{weather.main.humidity}</Table.Cell>
-              <Table.Cell>{weather.main.pressure}</Table.Cell>
+              <Table.Cell>{formatTemp(weather.main.temp)}&deg;F</Table.Cell>
+              <Table.Cell>{weather.main.humidity}%</Table.Cell>
+              <Table.Cell>{weather.main.pressure} mb</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>
