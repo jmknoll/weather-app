@@ -6,7 +6,6 @@ const WeatherTable = props => {
   const formatTemp = temp =>
     (Math.round((temp * (9 / 5) - 459.67) * 10) / 10).toFixed(1);
 
-  console.log(weather);
   return (
     weather &&
     weather.main && (

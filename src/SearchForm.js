@@ -3,12 +3,18 @@ import { Button, Form, Select } from "semantic-ui-react";
 import { fetchWeather } from "./dataService";
 
 const SearchForm = props => {
-  const { location } = props;
   const [queryType, setQueryType] = useState("latlon");
   const [error, setError] = useState(null);
-  const [lat, setLat] = useState(Math.round(location.latitude));
-  const [lon, setLon] = useState(Math.round(location.longitude));
+  const [lat, setLat] = useState("");
+  const [lon, setLon] = useState("");
   const [city, setCity] = useState("");
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(position => {
+      setLat(position.coords.latitude.toFixed(2));
+      setLon(position.coords.longitude.toFixed(2));
+    });
+  }, []);
 
   const renderLatLonForm = () => (
     <>
@@ -70,7 +76,7 @@ const SearchForm = props => {
       <Button
         onClick={() => {
           setError("");
-          fetchWeather(city)
+          fetchWeather(queryType === "name" ? { city } : { lat, lon })
             .then(res => props.setWeather(res.data))
             .catch(err => setError("City not found. Please try again"));
         }}
